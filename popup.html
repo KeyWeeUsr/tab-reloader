@@ -12,6 +12,11 @@
     <body>
         <h1>Tab Reloader</h1>
         <form id="reloadForm" method="post" name="reloadForm">
+            <input type="checkbox" id="order" name="orderReload" value="true">
+            <label for="orderReload">Ordered refreshing</label>
+            <input type="checkbox" id="noCache" name="noCache" value="true">
+            <label for="noCache">Ignore Cache</label>
+            <br>
             <input id="reloadSubmit" type="submit" value="Reload" />
         </form>
         <script src="popup.js"></script>

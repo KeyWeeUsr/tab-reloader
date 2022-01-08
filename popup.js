@@ -1,5 +1,15 @@
+function normalizeFormData() {
+    const defaults = { "noCache": false, "orderReload": false };
+    const result = {};
+    for (const [key, value] of new FormData(event.target)) {
+        result[key] = JSON.parse(value);
+    }
+    return Object.assign(defaults, result);
+}
+
 function onFormSubmit(event) {
-    console.log("form submit event", event.target.innerHTML);
+    const flags = normalizeFormData(event);
+    console.log(flags);
 }
 
 function addListeners() {
