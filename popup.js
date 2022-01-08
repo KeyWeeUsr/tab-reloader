@@ -1,20 +1,32 @@
 const { "tabs": bt } = browser;
 
+async function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 async function reloadTabs(tabs, flags) {
     const props = {};
+    const { delayMs } = flags;
     if (flags.noCache) {
         props["bypassCache"] = true;
     }
 
     const reloading = [];
     for (const tab of tabs) {
-        reloading.push(bt.reload(tab.id, props));
+        const reloadPromise = bt.reload(tab.id, props);
+        if (delayMs > 0) {
+            await reloadPromise;
+            await sleep(delayMs);
+            reloading.push(reloadPromise);
+        } else {
+            reloading.push(reloadPromise);
+        }
     }
     return Promise.all(reloading);
 }
 
 function normalizeFormData() {
-    const defaults = { "noCache": false, "orderReload": false };
+    const defaults = { "delayMs": 0, "noCache": false, "orderReload": false };
     const result = {};
     for (const [key, value] of new FormData(event.target)) {
         result[key] = JSON.parse(value);
