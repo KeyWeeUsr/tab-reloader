@@ -5,7 +5,9 @@
         <title>Tab Reloader</title>
         <style>
             body {
-                font-size: 0.8em;
+                background: #aaaaaa;
+                font-size: 0.7em;
+                margin: 0.5em;
             }
         </style>
     </head>
@@ -16,6 +18,7 @@
             <label for="orderReload">Ordered refreshing</label>
             <input type="checkbox" id="noCache" name="noCache" value="true">
             <label for="noCache">Ignore Cache</label>
+            <br>
             <input
                 type="checkbox" id="waitForLoad"
                 name="waitForLoad" value="true">
@@ -28,7 +31,7 @@
                 type="number" id="delaySec" name="delaySec"
                 min="0" value="0" size="5" step="0.01">
             <br>
-            <input id="reloadSubmit" type="submit" value="Reload" />
+            <input id="reloadSubmit" type="submit" value="Reload" width="100"/>
         </form>
         <script src="popup.js"></script>
     </body>
