@@ -1,0 +1,18 @@
+{
+    "manifest_version": 2,
+    "name": "Tab Reloader",
+    "description": "Reload available tabs efficiently",
+    "version": "0.1",
+    "background": {
+        "scripts": ["main.js"]
+    },
+    "browser_action": {
+        "default_icon": {
+            "16": "icons/icon.svg",
+            "28": "icons/icon.svg",
+            "32": "icons/icon.svg",
+            "64": "icons/icon.svg",
+            "128": "icons/icon.svg"
+        }
+    }
+}
