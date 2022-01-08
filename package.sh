@@ -4,4 +4,5 @@ zip -r -FS ../tab-reloader.zip * \
     --exclude '*.sh' \
     --exclude '*~' \
     --exclude '.*' \
-    --exclude '*#'
+    --exclude '*#' \
+    --exclude 'LICENSE.txt'
