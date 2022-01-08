@@ -1,9 +1,17 @@
 {
     "manifest_version": 2,
     "name": "Tab Reloader",
+    "short_name": "TR",
+    "author": "Peter Badida",
+    "developer": {
+        "name": "Peter Badida",
+        "url": "https://github.com/KeyWeeUsr"
+    },
+    "homepage_url": "https://github.com/KeyWeeUsr/tab-reloader",
     "description": "Reload available tabs efficiently",
-    "version": "0.1",
-    "permissions": ["tabs", "<all_urls>"],
+    "version": "1.0",
+    "permissions": ["tabs"],
+    "optional_permissions": ["<all_urls>"],
     "background": {
         "scripts": ["main.js"]
     },
