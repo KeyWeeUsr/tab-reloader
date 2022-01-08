@@ -10,8 +10,7 @@
     "homepage_url": "https://github.com/KeyWeeUsr/tab-reloader",
     "description": "Reload available tabs efficiently",
     "version": "1.0",
-    "permissions": ["tabs"],
-    "optional_permissions": ["<all_urls>"],
+    "permissions": ["tabs", "<all_urls>"],
     "background": {
         "scripts": ["main.js"]
     },
