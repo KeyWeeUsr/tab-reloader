@@ -3,7 +3,7 @@
     "name": "Tab Reloader",
     "description": "Reload available tabs efficiently",
     "version": "0.1",
-    "permissions": ["tabs"],
+    "permissions": ["tabs", "<all_urls>"],
     "background": {
         "scripts": ["main.js"]
     },

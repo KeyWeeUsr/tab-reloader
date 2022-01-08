@@ -19,10 +19,29 @@ async function reloadTabs(tabs, flags) {
 
     const reloading = [];
     for (const tab of tabs) {
-        const reloadPromise = bt.reload(tab.id, props);
+        if (tab.url.includes("about:")) {
+            console.warn("about:* pages break the refreshing, skipping!");
+            continue;
+        }
+
+        const { id } = tab;
+        const reloadPromise = bt.reload(id, props);
+
         if (delaySec > 0) {
             if (flags.waitForLoad) {
                 await reloadPromise;
+                const scriptOpts = {
+                    "allFrames": true,
+                    "code": `true`,
+                    "runAt": "document_idle"
+                };
+                let loaded = (await bt.executeScript(id, scriptOpts))[0];
+
+                while (loaded != true || tab.status != "complete") {
+                    console.warn(id, "sleep", loaded, tab.status);
+                    await sleep(100);
+                    loaded = (await bt.executeScript(id, scriptOpts))[0];
+                };
             }
             await sleep(delaySec * 1000);
             reloading.push(reloadPromise);
