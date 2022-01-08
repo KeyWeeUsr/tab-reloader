@@ -21,7 +21,9 @@ async function reloadTabs(tabs, flags) {
     for (const tab of tabs) {
         const reloadPromise = bt.reload(tab.id, props);
         if (delaySec > 0) {
-            await reloadPromise;
+            if (flags.waitForLoad) {
+                await reloadPromise;
+            }
             await sleep(delaySec * 1000);
             reloading.push(reloadPromise);
         } else {
