@@ -4,6 +4,9 @@
     "description": "Reload available tabs efficiently",
     "version": "0.1",
     "permissions": ["tabs"],
+    "background": {
+        "scripts": ["main.js"]
+    },
     "icons": {
         "16": "icons/icon.svg",
         "28": "icons/icon.svg",
