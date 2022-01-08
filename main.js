@@ -12,7 +12,7 @@ async function sleep(ms) {
 
 async function reloadTabs(tabs, flags) {
     const props = {};
-    const { delayMs } = flags;
+    const { delaySec } = flags;
     if (flags.noCache) {
         props["bypassCache"] = true;
     }
@@ -20,9 +20,9 @@ async function reloadTabs(tabs, flags) {
     const reloading = [];
     for (const tab of tabs) {
         const reloadPromise = bt.reload(tab.id, props);
-        if (delayMs > 0) {
+        if (delaySec > 0) {
             await reloadPromise;
-            await sleep(delayMs);
+            await sleep(delaySec * 1000);
             reloading.push(reloadPromise);
         } else {
             reloading.push(reloadPromise);

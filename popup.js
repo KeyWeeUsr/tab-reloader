@@ -1,5 +1,5 @@
 function normalizeFormData() {
-    const defaults = { "delayMs": 0, "noCache": false, "orderReload": false };
+    const defaults = { "delaySec": 0, "noCache": false, "orderReload": false };
     const result = {};
     for (const [key, value] of new FormData(event.target)) {
         result[key] = JSON.parse(value);
