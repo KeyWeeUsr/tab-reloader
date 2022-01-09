@@ -167,3 +167,16 @@ async function messageHandler(msg) {
 if (!window.hasRun) {
     main();
 }
+
+try {
+    module.exports = {
+        SC_EVERYTHING, SC_BEFORE_CURRENT_TAB, SC_AFTER_CURRENT_TAB,
+        SC_ATTENTION, SC_AUDIO, SC_HIDDEN, SC_ARTICLE, SC_READER, SC_MUTE,
+        SC_PIN, main, sleep, reloadTabs, jsonifyError, handleScenario,
+        filterTabsByScenario, messageHandler
+    };
+} catch (e) {
+    if (e.name === "ReferenceError" && e.message === "module is not defined") {
+        // running as extension
+    }
+}
