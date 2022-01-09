@@ -84,6 +84,46 @@ const bgTests = () => {
         const result = await module.reloadTabs([], {});
         assert(result.length === 0);
     });
+
+    it("warn about about:* pages", async () => {
+        const warn = sinon.stub(console, "warn");
+        const module = require("./main");
+        const result = await module.reloadTabs(
+            [{ "url": "about:debugging" }], {}
+        );
+        assert(result.length === 0);
+        assert(warn.calledOnce);
+        assert(warn.firstCall.firstArg.includes("about:*"));
+    });
+
+    describe("Options", () => {
+        it("noCache pass to reload()", async () => {
+            const reload = sinon.stub().resolves();
+            global.browser.tabs = { reload };
+
+            const id = 123;
+            const module = require("./main");
+            const result = await module.reloadTabs(
+                [{ "id": id, "url": "" }], { "noCache": true }
+            );
+            assert(result.length === 1);
+            assert(result[0] === undefined);
+            assert(reload.calledOnceWith(id, { "bypassCache": true }));
+        });
+
+        it("orderReload returns Array of Promises", async () => {
+            const reload = sinon.stub().resolves();
+            global.browser.tabs = { reload };
+
+            const id = 123;
+            const module = require("./main");
+            const result = await module.reloadTabs(
+                [{ "id": id, "url": "" }], { "orderReload": true }
+            );
+            assert(result.length === 1);
+            assert(result[0] instanceof Promise);
+        });
+    });
 };
 
 
