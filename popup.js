@@ -1,7 +1,8 @@
 function normalizeFormData() {
     const defaults = {
-        "delaySec": 0, "noCache": false, "orderReload": false,
-        "waitForLoad": false
+        "allNormalWins": false, "delaySec": 0, "noCache": false,
+        "orderReload": false, "scenario": "all", "skipCurrentTab": false,
+        "skipCurrentWin": false, "waitForLoad": false, "withPrivate": false
     };
     const result = {};
     for (const [key, value] of new FormData(event.target)) {
