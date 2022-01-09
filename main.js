@@ -49,6 +49,11 @@ async function reloadTabs(tabs, flags) {
             reloading.push(reloadPromise);
         }
     }
+
+    if (flags.orderReload) {
+        return reloading;
+    }
+
     return Promise.all(reloading);
 }
 
@@ -70,7 +75,14 @@ async function messageHandler(msg) {
         }
 
         const tabs = await bt.query(queryParams);
-        await reloadTabs(tabs, msg.flags);
+        const { flags } = msg;
+        if (flags.orderReload) {
+            for (const loadPromise of reloadTabs(tabs, flags)) {
+                await loadPromise;
+            }
+        } else {
+            await reloadTabs(tabs, msg.flags);
+        }
     } catch (err) {
         console.error(jsonifyError(err));
     }
