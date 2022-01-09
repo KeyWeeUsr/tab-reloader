@@ -37,7 +37,7 @@ async function reloadTabs(tabs, flags) {
         const { id } = tab;
         const reloadPromise = bt.reload(id, props);
 
-        if (delaySec > 0) {
+        if (delaySec >= 0) {
             if (flags.waitForLoad) {
                 await reloadPromise;
                 const scriptOpts = {
