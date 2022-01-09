@@ -7,33 +7,112 @@
             body {
                 background: #aaaaaa;
                 font-size: 0.7em;
-                margin: 0.5em;
+                margin: 0.2em 0.5em;
+                width: 22.7em;
+            }
+            h1, h2, h3, h4 {
+                margin: 0em;
+            }
+            .flx {
+                display: flex;
+                justify-content: space-between;
+            }
+            .check {
+                width: 13em;
+                dispay: flex;
+                margin: auto;
             }
         </style>
     </head>
     <body>
-        <h1>Tab Reloader</h1>
+        <h2>Tab Reloader</h2>
         <form id="reloadForm" method="post" name="reloadForm">
-            <input
-                type="checkbox" id="orderReload"
-                name="orderReload" value="true">
-            <label for="orderReload">Ordered refreshing</label>
-            <input type="checkbox" id="noCache" name="noCache" value="true">
-            <label for="noCache">Ignore Cache</label>
-            <br>
+            <div class="flx">
+                <span class="check">
+                    <input
+                        type="checkbox" id="orderReload"
+                        name="orderReload" value="true">
+                    <label for="orderReload">Ordered refreshing</label>
+                </span>
+                <span class="check">
+                    <input
+                        type="checkbox" id="noCache"
+                        name="noCache" value="true">
+                    <label for="noCache">Ignore Cache</label>
+                </span class="check">
+            </div>
+            <!-- br -->
             <input
                 type="checkbox" id="waitForLoad"
                 name="waitForLoad" value="true">
             <label for="waitForLoad">
-                When delaying, wait for each tab to load.
+                When delaying, wait for each tab to load
             </label>
             <br>
-            <label for="delaySec">Delay between tabs (seconds)</label>
-            <input
-                type="number" id="delaySec" name="delaySec"
-                min="0" value="0" size="5" step="0.01">
-            <br>
-            <input id="reloadSubmit" type="submit" value="Reload" width="100"/>
+            <div class="flx">
+                <span class="check">
+                    <label for="delaySec">Wait delay (seconds)</label>
+                </span>
+                <span class="check">
+                    <input
+                        type="number" id="delaySec" name="delaySec"
+                        min="0" value="0" size="5" step="0.01">
+                </span>
+            </div>
+            <h3>Skipping</h3>
+            <div class="flx">
+                <span class="check">
+                    <input
+                        type="checkbox" id="skipCurrentWin"
+                        name="skipCurrentWin" value="true">
+                    <label for="skipCurrentWin">Current window</label>
+                </span>
+                <span class="check">
+                    <input
+                        type="checkbox" id="skipCurrentTab"
+                        name="skipCurrentTab" value="true">
+                    <label for="skipCurrentTab">Current tab</label>
+                </span>
+            </div>
+            <h3>Limiting</h3>
+            <div class="flx">
+                <span class="check">
+                    <input
+                        type="checkbox" id="allNormalWins"
+                        name="allNormalWins" value="true">
+                    <label for="allNormalWins">All normal windows</label>
+                </span>
+                <span class="check">
+                    <input
+                        type="checkbox" id="withPrivate"
+                        name="withPrivate" value="true">
+                    <label for="withPrivate">With private</label>
+                </span>
+            </div>
+            <div class="flx">
+                <span class="check">
+                    <select name="scenario" id="scenario">
+                        <option value="all">Everything</option>
+                        <option value="left">Left of current</option>
+                        <option value="right">Right of current</option>
+                        <option value="attention">With attention</option>
+                        <option value="audio">With audio</option>
+                        <option value="hidden">Hidden</option>
+                        <option value="incognito">Incognito</option>
+                        <option value="article">Articles</option>
+                        <option value="reader">Reader modes</option>
+                        <option value="mute">Muted</option>
+                        <option value="pin">Pinned</option>
+                    </select>
+                </span>
+                <span class="check">
+                    <span style="margin: 0.4em;">
+                        <input
+                            id="reloadSubmit" type="submit"
+                            value="Reload" width="100"/>
+                    </span>
+                </span>
+            </div>
         </form>
         <script src="popup.js"></script>
     </body>
