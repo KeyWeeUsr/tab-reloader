@@ -70,7 +70,7 @@ async function messageHandler(msg) {
     try {
         const queryParams = {};
 
-        if (true /* !flags.allWindows */) {
+        if (!flags.allNormalWins) {
             queryParams["currentWindow"] = true;
         }
 
